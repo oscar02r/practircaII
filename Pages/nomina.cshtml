@@ -3,7 +3,7 @@
 @{
 }
 
-
+<h1>@Model.empleados[0].Nombre</h1>
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -19,25 +19,18 @@
         </tr>
     </thead>
     <tbody>
+        @foreach (var empleado in Model.empleados) {
 
         <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>mdo</td>
+            <th scope="row">@empleado.Nombre</th>
+            <td>@empleado.Apellido</td>
+            <td>@empleado.Cargo</td>
+            <td>@empleado.Salario</td>
+            <td>@Model.afp(empleado.Salario)</td>
+            <td>@Model.sfs(empleado.Salario)</td>
+            <td>@Model.isr(empleado.Salario)</td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>twitter</td>
-        </tr>
-
-
+       
+        }
     </tbody>
 </table>
