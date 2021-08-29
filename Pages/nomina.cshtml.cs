@@ -86,22 +86,32 @@ namespace practircaII.Pages
             }
             else if(salarioAnual >= 416220.01 && salarioAnual <= 624329.00 ){
                 descuento = ( salarioAnual - 416220.01) * 15 / 100;
-                return Math.Round(descuento, 2);
+                double descuentoMensual = descuento / 12;
+                return Math.Round(descuentoMensual, 2);
             } 
             else if (salarioAnual >= 624329.01 && salarioAnual <= 867123.00)
             {
               descuento = ( (salarioAnual - 624329.01) * 20 / 100) + 31216.00;
-              return Math.Round(descuento, 2);
+              double descuentoMensual = descuento / 12;
+                return Math.Round(descuentoMensual, 2);
             }
             else if (salarioAnual >= 867123.01 )
             {
-                 descuento = ((salarioAnual - 867123.01) * 25 / 100) + 79776.00;
-                return Math.Round(descuento,2);
+                double descuentoMensual = descuento / 12;
+                return Math.Round(descuentoMensual, 2);
             }
 
             return descuento;
         }
-    
+        public double descuentoTotal(double afp, double sfs, double isr ) {
+            double desTotal = afp + sfs + isr;
+            return desTotal;
+        }
+
+        public double salarioNeto(double salario, double totalDescuento) {
+            double saNeto = salario -totalDescuento;
+           return saNeto;
+        }
         public void OnGet() { }
        
         

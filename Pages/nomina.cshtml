@@ -1,9 +1,9 @@
 ﻿@page
 @model practircaII.Pages.NominaModel
 @{
+    double totalDes = 0.0;
 }
 
-<h1>@Model.empleados[0].Nombre</h1>
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -19,18 +19,21 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var empleado in Model.empleados) {
+        @foreach (var empleado in Model.empleados)
+        {
+            totalDes = @Model.descuentoTotal(@Model.afp(empleado.Salario), @Model.sfs(empleado.Salario), @Model.isr(empleado.Salario));
+            <tr>
+                <th scope="row">@empleado.Nombre</th>
+                <td>@empleado.Apellido</td>
+                <td>@empleado.Cargo</td>
+                <td>@empleado.Salario</td>
+                <td>@Model.afp(empleado.Salario)</td>
+                <td>@Model.sfs(empleado.Salario)</td>
+                <td>@Model.isr(empleado.Salario)</td>
+                <td>@Model.descuentoTotal(@Model.afp(empleado.Salario), @Model.sfs(empleado.Salario), @Model.isr(empleado.Salario)) </td>
+                <td>@Model.salarioNeto(empleado.Salario, totalDes)</td>
+            </tr>
 
-        <tr>
-            <th scope="row">@empleado.Nombre</th>
-            <td>@empleado.Apellido</td>
-            <td>@empleado.Cargo</td>
-            <td>@empleado.Salario</td>
-            <td>@Model.afp(empleado.Salario)</td>
-            <td>@Model.sfs(empleado.Salario)</td>
-            <td>@Model.isr(empleado.Salario)</td>
-        </tr>
-       
         }
     </tbody>
 </table>
